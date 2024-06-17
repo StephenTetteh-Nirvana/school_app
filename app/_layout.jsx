@@ -45,6 +45,13 @@ export default function RootLayout() {
         )
         }} />
         <Stack.Screen name="student"/>
+        <Stack.Screen name="staff"/>
+        <Stack.Screen
+        name="modal"
+        options={{
+          presentation: 'modal',
+        }}
+      />
       <Stack.Screen name="+not-found" />
     </Stack>
    

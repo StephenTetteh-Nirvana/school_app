@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View, ActivityIndicator } from 'react-native'
 import { Link,useRouter } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
+import { getDoc, doc} from "firebase/firestore"
+import { auth,db } from '../firebase';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Error from '../components/Error'
 
@@ -30,6 +31,16 @@ const login = () => {
            await signInWithEmailAndPassword(auth,email,password)
            const user = auth.currentUser;
            if(user){
+                const docRef = doc(db,"Users",user.uid)
+                const docData = await getDoc(docRef)
+                const userRole = docData.data().role
+                if(userRole && userRole === "Student"){
+                    await AsyncStorage.setItem("role",JSON.stringify("Student"))
+                }else if(userRole && userRole === "Staff"){
+                    await AsyncStorage.setItem("role",JSON.stringify("Staff"))
+                }else{
+                    console.log("no role yet")
+                }
                 await AsyncStorage.setItem("userID",JSON.stringify(user.uid))
                 console.log("userID replaced")
                 setEmail('')

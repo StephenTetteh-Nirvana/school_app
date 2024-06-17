@@ -1,11 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
+import { Link } from 'expo-router'
 
 const student = () => {
   
   return (
     <View>
       <Text>student</Text>
+      <Link href="/modal">
+       <Text>Open modal</Text>
+      </Link>
     </View>
   )
 }
