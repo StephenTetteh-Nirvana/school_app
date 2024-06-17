@@ -8,15 +8,15 @@ const modal = () => {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
          {motivationLevel === "1" ? (
-            <Text>No motivation at all.</Text>
+            <Text style={styles.text}>No motivation at all 😔</Text>
          ):motivationLevel === "2" ? (
-            <Text>Feeling less motivated today</Text>
+            <Text style={styles.text}>Feeling less motivated today 😑</Text>
          ):motivationLevel === "3" ? (
-            <Text>A little motivated</Text>
+            <Text style={styles.text}>A little motivated 🙂</Text>
          ):motivationLevel === "4" ? (
-            <Text>Motivated enough</Text>
+            <Text style={styles.text}>Motivated enough 🤪</Text>
          ):motivationLevel === "5" ? (
-            <Text>Fully Motivated</Text>
+            <Text style={styles.text}>Fully Motivated 🤩</Text>
          ):""
         }
       </View>
@@ -25,4 +25,9 @@ const modal = () => {
 
 export default modal
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    text: {
+        fontSize: 20,
+        fontWeight: "bold"
+    }
+})
