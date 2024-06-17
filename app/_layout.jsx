@@ -44,12 +44,27 @@ export default function RootLayout() {
           </View>
         )
         }} />
-        <Stack.Screen name="student"/>
-        <Stack.Screen name="staff"/>
+        <Stack.Screen name="student" options={{
+          headerTitle: "",
+          headerLeft: () => (
+            <View style={{backgroundColor: "#E5E4E2",borderRadius: 30,padding: 5}}>
+              <Ionicons name="chevron-back" size={30} color="black" onPress={()=>router.back()} />
+            </View>
+          )
+        }}/>
+        <Stack.Screen name="staff" options={{
+          headerTitle: "",
+          headerLeft: () => (
+            <View style={{backgroundColor: "#E5E4E2",borderRadius: 30,padding: 5}}>
+              <Ionicons name="chevron-back" size={30} color="black" onPress={()=>router.back()} />
+            </View>
+          )
+        }}/>
         <Stack.Screen
         name="modal"
         options={{
           presentation: 'modal',
+          title: "Motivation Level"
         }}
       />
       <Stack.Screen name="+not-found" />

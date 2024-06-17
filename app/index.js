@@ -77,7 +77,6 @@ const home = () => {
     if (userJsonValue != null ) {
          const parsedUserID = JSON.parse(userJsonValue)
          setUser(parsedUserID)
-         console.log("user:",parsedUserID)
     }else{
         setUser(null)
         console.log("no data")
@@ -89,7 +88,6 @@ const fetchUserRole = async() => {
   if (roleJsonValue != null ) {
        const parsedUserRole = JSON.parse(roleJsonValue)
        setRole(parsedUserRole)
-       console.log("role:",parsedUserRole)
   }else{
       setRole(null)
       console.log("no data")
