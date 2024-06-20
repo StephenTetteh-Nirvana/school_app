@@ -28,7 +28,6 @@ const home = () => {
         role:userRole
       })
       await navigateUserToRole(docRef)
-      console.log("document updated with success")
     }else{
       console.log("user is null")
     }
@@ -58,8 +57,7 @@ const home = () => {
     await signOut(auth)
     .then(async()=>{
       router.push("/login")
-      await AsyncStorage.setItem("userID",JSON.stringify(null))
-      await AsyncStorage.setItem("role",JSON.stringify(null))
+      await AsyncStorage.clear()
       setUser(null)
       setRole(null)
       setLoading(false)
@@ -132,14 +130,14 @@ useEffect(()=>{
         <>
         <Text style={{color: "#C0C0C0",marginTop:8,fontSize:18}}>Who is using this app? 🤔</Text>
         <View style={{display:"flex",flexDirection: "row",marginLeft:20,marginTop:10}}>
-            <TouchableOpacity style={styles.firstImageContainer} onPress={()=>setUserRole("Student")}>
-              <Image style={styles.image} source={require("../assets/images/student.jpg")}/>
-              <Text style={{textAlign: "center"}}>STUDENT</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.secondImageContainer} onPress={()=>setUserRole("Staff")}>
-              <Image style={styles.image} source={require("../assets/images/staff.jpg")}/>
-              <Text style={{textAlign: "center"}}>STAFF</Text>
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.firstImageContainer} onPress={()=>setUserRole("Student")}>
+            <Image style={styles.image} source={require("../assets/images/student.jpg")}/>
+            <Text style={{textAlign: "center"}}>STUDENT</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.secondImageContainer} onPress={()=>setUserRole("Staff")}>
+            <Image style={styles.image} source={require("../assets/images/staff.jpg")}/>
+            <Text style={{textAlign: "center"}}>STAFF</Text>
+          </TouchableOpacity>
         </View>
         </>
         )
@@ -153,16 +151,16 @@ useEffect(()=>{
         :
         (
           <View style={{marginTop:15}}>
-              <View style={{borderColor:"#000",borderWidth:1,borderRadius:30,padding:8}}>
-                <Link href="/login">
-                  <Text style={{textAlign:'center'}}>Login</Text>
-                </Link>
-              </View>
-              <View style={{borderColor:"#000",borderWidth:1,borderRadius:30,marginTop:10,padding:8}}>
-              <Link href="/register">
-                <Text style={{textAlign:"center"}}>Register</Text>
+            <View style={{borderColor:"#000",borderWidth:1,borderRadius:30,padding:8}}>
+              <Link href="/login">
+                <Text style={{textAlign:'center'}}>Login</Text>
               </Link>
-              </View>
+            </View>
+            <View style={{borderColor:"#000",borderWidth:1,borderRadius:30,marginTop:10,padding:8}}>
+            <Link href="/register">
+              <Text style={{textAlign:"center"}}>Register</Text>
+            </Link>
+            </View>
           </View>
         )}
       </View>

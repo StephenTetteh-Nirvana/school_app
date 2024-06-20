@@ -31,63 +31,63 @@ const login = () => {
            await signInWithEmailAndPassword(auth,email,password)
            const user = auth.currentUser;
            if(user){
-                const docRef = doc(db,"Users",user.uid)
-                const docData = await getDoc(docRef)
-                const userRole = docData.data().role
-                if(userRole && userRole === "Student"){
-                    await AsyncStorage.setItem("role",JSON.stringify("Student"))
-                }else if(userRole && userRole === "Staff"){
-                    await AsyncStorage.setItem("role",JSON.stringify("Staff"))
-                }else{
-                    console.log("no role yet")
-                }
-                await AsyncStorage.setItem("userID",JSON.stringify(user.uid))
-                console.log("userID replaced")
-                setEmail('')
-                setPassword('')
-                router.push("/")
-           }
+            const docRef = doc(db,"Users",user.uid)
+            const docData = await getDoc(docRef)
+            const userRole = docData.data().role
+            await AsyncStorage.setItem("userID",JSON.stringify(user.uid))
+            await AsyncStorage.setItem("name",JSON.stringify(docData.data().username))
+            if(userRole && userRole === "Student"){
+                await AsyncStorage.setItem("role",JSON.stringify("Student"))
+            }else if(userRole && userRole === "Staff"){
+                await AsyncStorage.setItem("role",JSON.stringify("Staff"))
+            }else{
+                console.log("no role yet")
+            }
+            setEmail('')
+            setPassword('')
+            router.push("/")
+          }
         }catch(error){
-            console.log(error)
-            switch (error.code) {
-                case 'auth/invalid-email':
-                    setErrMsg("Invalid Email")
-                    setTimeout(() => {
-                        setErrMsg('');
-                      }, 4000);
-                  break;
-                case 'auth/wrong-password':
-                  setErrMsg("Incorrect Password")
-                  setTimeout(() => {
-                    setErrMsg('');
-                  }, 4000);
-                  break;
-                case 'auth/user-not-found':
-                setErrMsg("Account does not exist")
+          console.log(error)
+          switch (error.code) {
+            case 'auth/invalid-email':
+                setErrMsg("Invalid Email")
                 setTimeout(() => {
                     setErrMsg('');
-                }, 4000);
-                break;
-                case 'auth/weak-password':
-                  setErrMsg("Password should be 6 characters or more")
-                  setTimeout(() => {
-                    setErrMsg('');
                   }, 4000);
-                  break;
-                case 'auth/invalid-credential':
-                  setErrMsg("Wrong Email/Password")
-                  setTimeout(() => {
-                    setErrMsg('');
-                  }, 4000);
-                  break;
-                default:
-                  setErrMsg("Check Your Internet Connection")
-                  setTimeout(() => {
-                    setErrMsg('');
-                  }, 4000);
+              break;
+            case 'auth/wrong-password':
+              setErrMsg("Incorrect Password")
+              setTimeout(() => {
+                setErrMsg('');
+              }, 4000);
+              break;
+            case 'auth/user-not-found':
+            setErrMsg("Account does not exist")
+            setTimeout(() => {
+                setErrMsg('');
+            }, 4000);
+            break;
+            case 'auth/weak-password':
+              setErrMsg("Password should be 6 characters or more")
+              setTimeout(() => {
+                setErrMsg('');
+              }, 4000);
+              break;
+            case 'auth/invalid-credential':
+              setErrMsg("Wrong Email/Password")
+              setTimeout(() => {
+                setErrMsg('');
+              }, 4000);
+              break;
+            default:
+              setErrMsg("Check Your Internet Connection")
+              setTimeout(() => {
+                setErrMsg('');
+              }, 4000);
             }
         }finally{
-            setLoading(false)
+          setLoading(false)
         }
     }
 
@@ -145,23 +145,23 @@ export default login
 
 const styles = StyleSheet.create({
     container: {
-        flex:1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#FFFFFF"
+      flex:1,
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#FFFFFF"
     },
     submitBtn: {
-       padding: 10,
-       backgroundColor: "#2666CF",
-       borderRadius: 50,
-       marginTop: 20
+      padding: 10,
+      backgroundColor: "#2666CF",
+      borderRadius: 50,
+      marginTop: 20
     },
     textInput: {
-        padding: 10,
-        borderRadius: 10,
-        marginTop:8,
-        backgroundColor: "#E5E4E2",
-        color: "#000",
-        placeholderTextColor: 'gray'
+      padding: 10,
+      borderRadius: 10,
+      marginTop:8,
+      backgroundColor: "#E5E4E2",
+      color: "#000",
+      placeholderTextColor: 'gray'
     }
 })
