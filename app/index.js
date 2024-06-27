@@ -178,13 +178,13 @@ const styles = StyleSheet.create({
   backgroundColor: "#FFFFFF"
   },
   firstImageContainer: {
-    borderRadius: "50%",
+    borderRadius: 50,
     marginTop:10,
     width: 80,
     height: 80
   },
   secondImageContainer: {
-    borderRadius: "50%",
+    borderRadius: 50,
     marginTop:10,
     marginLeft:35,
     width: 80,
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height:"100%",
-    borderRadius: "50%",
+    borderRadius: 50,
     resizeMode: "cover"
   },
   roleBtn: {
